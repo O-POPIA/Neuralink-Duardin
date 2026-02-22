@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neuralink — O Futuro da Mente Humana</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  :root {
+    --green-deep: #0d4a2e;
+    --green-mid: #1a7a4a;
+    --green-bright: #2ec27e;
+    --green-glow: #4fffb0;
+    --green-light: #a8f0c6;
+    --gray-dark: #111714;
+    --gray-mid: #2a2e2b;
+    --gray-light: #d4d8d5;
+    --white: #f5faf7;
+    --accent: #00e57a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--gray-dark);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 3rem;
+    background: rgba(13,17,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(46,194,126,0.15);
+  }
+  .nav-logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.4rem; font-weight: 900;
+    color: var(--green-bright);
+    letter-spacing: 3px;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; align-items: center; }
+  .nav-links a {
+    color: var(--gray-light); text-decoration: none;
+    font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--green-bright); }
+  .nav-cta {
+    background: var(--green-bright); color: var(--gray-dark) !important;
+    padding: 0.5rem 1.2rem; border-radius: 50px; font-weight: 700 !important;
+    transition: background 0.3s, box-shadow 0.3s !important;
+  }
+  .nav-cta:hover { background: var(--green-glow) !important; box-shadow: 0 0 20px rgba(78,255,176,0.5); }
+
+ 
+  #home {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: relative; overflow: hidden; text-align: center;
+    padding: 6rem 2rem 4rem;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(46,194,126,0.12) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 40% at 80% 80%, rgba(13,74,46,0.3) 0%, transparent 60%),
+                linear-gradient(160deg, #0a120d 0%, #111714 40%, #0d1a10 100%);
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0; z-index: 0;
+    background-image: 
+      linear-gradient(rgba(46,194,126,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(46,194,126,0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridMove 20s linear infinite;
+  }
+  @keyframes gridMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 60px 60px; }
+  }
+
+  .orb {
+    position: absolute; border-radius: 50%;
+    filter: blur(80px); animation: float 8s ease-in-out infinite;
+    z-index: 0;
+  }
+  .orb1 { width: 500px; height: 500px; background: rgba(46,194,126,0.07); top: -100px; left: -100px; animation-delay: 0s; }
+  .orb2 { width: 400px; height: 400px; background: rgba(0,229,122,0.06); bottom: -50px; right: -50px; animation-delay: -3s; }
+  .orb3 { width: 300px; height: 300px; background: rgba(13,74,46,0.15); top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: -6s; }
+  @keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-30px) scale(1.05); }
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 800px; }
+
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--green-bright); border: 1px solid rgba(46,194,126,0.4);
+    padding: 0.4rem 1rem; border-radius: 50px; margin-bottom: 2rem;
+    animation: fadeDown 1s ease forwards;
+  }
+  .hero-tag::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--green-bright); animation: pulse 1.5s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.5)} }
+
+  .hero-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2.5rem, 7vw, 5.5rem);
+    font-weight: 900; line-height: 1.05;
+    letter-spacing: -1px;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+  .hero-title span {
+    background: linear-gradient(135deg, var(--green-glow), var(--green-bright), #00cc66);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 1.15rem; color: var(--gray-light); line-height: 1.7;
+    margin: 1.5rem auto; max-width: 580px;
+    font-weight: 300;
+    animation: fadeUp 1s 0.4s ease both;
+  }
+
+  .hero-btns {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    margin-top: 2.5rem;
+    animation: fadeUp 1s 0.6s ease both;
+  }
+  .btn-primary {
+    background: var(--green-bright); color: var(--gray-dark);
+    padding: 0.9rem 2.2rem; border-radius: 50px; font-weight: 700;
+    font-size: 0.95rem; text-decoration: none; border: none; cursor: pointer;
+    transition: all 0.3s; letter-spacing: 0.5px;
+    box-shadow: 0 4px 30px rgba(46,194,126,0.3);
+  }
+  .btn-primary:hover { background: var(--green-glow); box-shadow: 0 8px 40px rgba(78,255,176,0.5); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--green-bright);
+    padding: 0.9rem 2.2rem; border-radius: 50px; font-weight: 500;
+    font-size: 0.95rem; text-decoration: none; border: 1.5px solid rgba(46,194,126,0.5);
+    cursor: pointer; transition: all 0.3s;
+  }
+  .btn-outline:hover { border-color: var(--green-bright); background: rgba(46,194,126,0.08); }
+
+
+  .scroll-hint {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    font-size: 0.7rem; letter-spacing: 2px; color: rgba(212,216,213,0.5);
+    animation: fadeUp 1s 1.2s ease both;
+  }
+  .scroll-line {
+    width: 1px; height: 60px;
+    background: linear-gradient(to bottom, rgba(46,194,126,0.8), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse { 0%,100%{opacity:1;transform:scaleY(1)} 50%{opacity:0.4;transform:scaleY(0.8)} }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
+
+  section { padding: 6rem 2rem; }
+  .section-label {
+    font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--green-bright); margin-bottom: 1rem; display: block;
+  }
+  .section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 700;
+    line-height: 1.2; margin-bottom: 1.5rem;
+  }
+  .section-title span { color: var(--green-bright); }
+  .section-sub { color: var(--gray-light); line-height: 1.7; max-width: 600px; }
+
+
+  #stats {
+    background: rgba(26,42,30,0.4);
+    border-top: 1px solid rgba(46,194,126,0.1);
+    border-bottom: 1px solid rgba(46,194,126,0.1);
+    padding: 4rem 2rem;
+  }
+  .stats-grid {
+    max-width: 1000px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem; text-align: center;
+  }
+  .stat-item { padding: 1rem; }
+  .stat-num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem; font-weight: 900;
+    color: var(--green-bright);
+    display: block;
+    animation: countUp 0.1s ease;
+  }
+  .stat-label { color: var(--gray-light); font-size: 0.85rem; letter-spacing: 1px; margin-top: 0.3rem; }
+
+ 
+  #about {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    padding: 6rem 2rem;
+  }
+  .about-visual {
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .brain-circle {
+    width: 340px; height: 340px; border-radius: 50%;
+    background: radial-gradient(circle at 40% 35%, rgba(46,194,126,0.15), rgba(13,74,46,0.3) 60%, rgba(10,18,13,0.9));
+    border: 1px solid rgba(46,194,126,0.2);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    animation: rotateSlow 20s linear infinite;
+  }
+  @keyframes rotateSlow { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+  .brain-circle i { font-size: 5rem; color: var(--green-bright); animation: rotateSlow 20s linear infinite reverse; }
+  .ring {
+    position: absolute; border-radius: 50%; border: 1px solid;
+    animation: ringPulse 3s ease-in-out infinite;
+  }
+  .ring1 { width: 380px; height: 380px; border-color: rgba(46,194,126,0.15); animation-delay: 0s; }
+  .ring2 { width: 430px; height: 430px; border-color: rgba(46,194,126,0.08); animation-delay: -1s; }
+  .ring3 { width: 480px; height: 480px; border-color: rgba(46,194,126,0.04); animation-delay: -2s; }
+  @keyframes ringPulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.02);opacity:0.6} }
+
+  .about-text .section-sub { margin-bottom: 2rem; }
+  .feature-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+  .feature-list li {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1rem 1.2rem;
+    background: rgba(26,122,74,0.08);
+    border: 1px solid rgba(46,194,126,0.1);
+    border-radius: 12px;
+    transition: all 0.3s;
+  }
+  .feature-list li:hover { background: rgba(26,122,74,0.15); border-color: rgba(46,194,126,0.3); transform: translateX(5px); }
+  .feature-list li i { color: var(--green-bright); font-size: 1.1rem; margin-top: 2px; flex-shrink: 0; }
+  .feature-list li span { font-size: 0.9rem; color: var(--gray-light); line-height: 1.5; }
+
+
+  #how {
+    background: linear-gradient(180deg, transparent, rgba(13,74,46,0.08), transparent);
+    text-align: center; padding: 6rem 2rem;
+  }
+  #how .section-title, #how .section-label { display: block; }
+  .steps-grid {
+    max-width: 1100px; margin: 4rem auto 0;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+  }
+  .step-card {
+    background: rgba(20,30,22,0.7);
+    border: 1px solid rgba(46,194,126,0.12);
+    border-radius: 20px; padding: 2.5rem 2rem;
+    text-align: center; position: relative; overflow: hidden;
+    transition: all 0.4s;
+  }
+  .step-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--green-bright), transparent);
+    transform: scaleX(0); transition: transform 0.4s;
+  }
+  .step-card:hover::before { transform: scaleX(1); }
+  .step-card:hover { transform: translateY(-8px); border-color: rgba(46,194,126,0.3); background: rgba(26,50,30,0.8); }
+  .step-num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3.5rem; font-weight: 900;
+    color: rgba(46,194,126,0.1); position: absolute; top: 1rem; right: 1.5rem;
+    line-height: 1;
+  }
+  .step-icon { font-size: 2.5rem; color: var(--green-bright); margin-bottom: 1.2rem; }
+  .step-card h3 { font-size: 1.1rem; margin-bottom: 0.7rem; color: var(--white); }
+  .step-card p { font-size: 0.9rem; color: var(--gray-light); line-height: 1.6; }
+
+  
+  #saiba-mais { padding: 6rem 2rem; }
+  .saiba-container { max-width: 1100px; margin: 0 auto; }
+  .saiba-hero {
+    background: linear-gradient(135deg, rgba(13,74,46,0.4), rgba(26,122,74,0.2));
+    border: 1px solid rgba(46,194,126,0.2);
+    border-radius: 24px; padding: 3.5rem; margin-bottom: 3rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+  }
+  .saiba-img {
+    border-radius: 16px; overflow: hidden; height: 280px;
+  }
+  .saiba-img img { width: 100%; height: 100%; object-fit: cover; }
+
+  .tech-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem; margin-top: 2rem;
+  }
+  .tech-card {
+    background: rgba(17,23,20,0.8);
+    border: 1px solid rgba(46,194,126,0.1);
+    border-radius: 16px; padding: 2rem;
+    transition: all 0.3s;
+  }
+  .tech-card:hover { border-color: rgba(46,194,126,0.35); transform: translateY(-4px); }
+  .tech-card-icon { font-size: 2rem; color: var(--green-bright); margin-bottom: 1rem; }
+  .tech-card h3 { font-size: 1rem; margin-bottom: 0.6rem; color: var(--white); }
+  .tech-card p { font-size: 0.85rem; color: var(--gray-light); line-height: 1.6; }
+
+ 
+  .aderir-box {
+    margin-top: 4rem;
+    background: radial-gradient(ellipse at top, rgba(46,194,126,0.08), transparent 70%),
+                rgba(17,23,20,0.9);
+    border: 1px solid rgba(46,194,126,0.2);
+    border-radius: 24px; padding: 3rem; text-align: center;
+  }
+  .aderir-box h2 { font-family: 'Orbitron', sans-serif; font-size: 1.8rem; margin-bottom: 1rem; }
+  .aderir-box p { color: var(--gray-light); margin-bottom: 2rem; }
+  .aderir-form { display: flex; gap: 1rem; max-width: 500px; margin: 0 auto; flex-wrap: wrap; justify-content: center; }
+  .aderir-form input {
+    flex: 1; min-width: 220px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(46,194,126,0.2);
+    color: var(--white); padding: 0.9rem 1.2rem; border-radius: 50px;
+    font-family: inherit; font-size: 0.9rem; outline: none;
+    transition: border-color 0.3s;
+  }
+  .aderir-form input:focus { border-color: var(--green-bright); }
+  .aderir-form input::placeholder { color: rgba(212,216,213,0.4); }
+
+  
+  #depoimentos { padding: 6rem 2rem; text-align: center; }
+  .testimonials-grid {
+    max-width: 1000px; margin: 3rem auto 0;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;
+  }
+  .testimonial-card {
+    background: rgba(20,28,22,0.8);
+    border: 1px solid rgba(46,194,126,0.1);
+    border-radius: 16px; padding: 2rem; text-align: left;
+    transition: all 0.3s;
+  }
+  .testimonial-card:hover { border-color: rgba(46,194,126,0.3); transform: translateY(-4px); }
+  .t-quote { font-size: 2rem; color: var(--green-bright); line-height: 1; margin-bottom: 1rem; }
+  .t-text { font-size: 0.9rem; color: var(--gray-light); line-height: 1.7; margin-bottom: 1.5rem; font-style: italic; }
+  .t-author { display: flex; align-items: center; gap: 0.8rem; }
+  .t-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: var(--green-deep); display: flex; align-items: center; justify-content: center;
+    color: var(--green-bright); font-size: 1.1rem;
+    border: 1px solid rgba(46,194,126,0.3);
+  }
+  .t-name { font-weight: 500; font-size: 0.9rem; }
+  .t-role { font-size: 0.75rem; color: rgba(212,216,213,0.5); }
+
+  footer {
+    background: #080e0a;
+    border-top: 1px solid rgba(46,194,126,0.1);
+    padding: 4rem 2rem 2rem;
+  }
+  .footer-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+    margin-bottom: 3rem;
+  }
+  .footer-brand .nav-logo { display: block; margin-bottom: 1rem; font-size: 1.6rem; }
+  .footer-brand p { font-size: 0.85rem; color: rgba(212,216,213,0.5); line-height: 1.6; margin-bottom: 1.5rem; }
+  .footer-socials { display: flex; gap: 0.8rem; }
+  .social-btn {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: rgba(46,194,126,0.1); border: 1px solid rgba(46,194,126,0.2);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--green-bright); font-size: 0.9rem; text-decoration: none;
+    transition: all 0.3s;
+  }
+  .social-btn:hover { background: var(--green-bright); color: var(--gray-dark); transform: translateY(-3px); }
+  .footer-col h4 { font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--green-bright); margin-bottom: 1.2rem; }
+  .footer-col a { display: block; color: rgba(212,216,213,0.55); font-size: 0.85rem; text-decoration: none; margin-bottom: 0.6rem; transition: color 0.3s; }
+  .footer-col a:hover { color: var(--green-bright); }
+  .footer-bottom {
+    max-width: 1200px; margin: 0 auto;
+    border-top: 1px solid rgba(46,194,126,0.08);
+    padding-top: 2rem;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: gap;
+    font-size: 0.8rem; color: rgba(212,216,213,0.35);
+  }
+
+  .page { display: none; }
+  .page.active { display: block; }
+
+ 
+  #page-login {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #0a140c, #0f1f12, #081008);
+    padding: 0;
+  }
+  .auth-container {
+    display: grid; grid-template-columns: 1fr 1fr;
+    width: 100%; max-width: 1100px; min-height: 100vh;
+    background: var(--gray-dark);
+    overflow: hidden;
+  }
+  .auth-visual {
+    position: relative; overflow: hidden;
+    background: linear-gradient(160deg, #0a2e14, #061a0a);
+  }
+  .auth-visual img { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; }
+  .auth-visual-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, transparent, rgba(13,17,15,0.95));
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 3rem 2rem;
+  }
+  .auth-visual-text h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem; color: var(--white); margin-bottom: 0.5rem;
+  }
+  .auth-visual-text p { color: var(--gray-light); font-size: 0.9rem; }
+  .auth-form-side {
+    background: var(--white);
+    display: flex; flex-direction: column;
+    padding: 0;
+  }
+  .auth-nav {
+    display: flex; justify-content: flex-end; align-items: center;
+    gap: 1rem; padding: 1.5rem 2rem;
+    border-bottom: 1px solid #eaeaea;
+  }
+  .auth-nav a {
+    font-size: 0.9rem; text-decoration: none; color: #555;
+    transition: color 0.3s; cursor: pointer;
+  }
+  .auth-nav a:hover { color: var(--green-mid); }
+  .auth-nav .active-tab {
+    background: var(--green-bright); color: var(--gray-dark);
+    padding: 0.5rem 1.2rem; border-radius: 8px; font-weight: 700;
+  }
+  .auth-form-content {
+    flex: 1; display: flex; flex-direction: column;
+    justify-content: center; padding: 3rem 4rem;
+    color: #1a1a1a;
+  }
+  .auth-form-content h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.2rem; font-weight: 900; margin-bottom: 0.5rem;
+    color: #111;
+  }
+  .auth-form-content .sub { color: #777; font-size: 0.9rem; margin-bottom: 2.5rem; }
+  .form-group { margin-bottom: 1.5rem; }
+  .form-group label {
+    display: block; font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase; color: #333;
+    margin-bottom: 0.5rem;
+  }
+  .form-group input {
+    width: 100%; padding: 0.85rem 0 0.85rem 0;
+    border: none; border-bottom: 2px solid #ddd;
+    background: transparent; font-family: inherit; font-size: 0.95rem;
+    color: #111; outline: none; transition: border-color 0.3s;
+  }
+  .form-group input:focus { border-color: var(--green-bright); }
+  .form-group input::placeholder { color: #bbb; }
+  .social-auth { display: flex; gap: 0.8rem; margin-top: 1rem; }
+  .social-auth-btn {
+    flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 0.7rem; border: 1.5px solid #e0e0e0; border-radius: 10px;
+    background: #fff; color: #444; font-size: 0.8rem; cursor: pointer;
+    text-decoration: none; transition: all 0.3s;
+  }
+  .social-auth-btn:hover { border-color: var(--green-bright); background: rgba(46,194,126,0.05); }
+  .social-auth-btn img { width: 18px; height: 18px; }
+  .divider {
+    display: flex; align-items: center; gap: 1rem;
+    color: #ccc; font-size: 0.8rem; margin: 1.5rem 0;
+  }
+  .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: #eee; }
+  .checkbox-group {
+    display: flex; align-items: center; gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+  .checkbox-group input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--green-bright); cursor: pointer; }
+  .checkbox-group label { font-size: 0.85rem; color: #555; cursor: pointer; }
+  .checkbox-group a { color: var(--green-mid); text-decoration: none; cursor: pointer; }
+  .forgot-link { display: block; text-align: right; color: var(--green-mid); font-size: 0.8rem; text-decoration: none; margin-bottom: 1.5rem; cursor: pointer; }
+
+  #page-register { display: none; }
+
+
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 9999;
+    background: rgba(0,0,0,0.7); backdrop-filter: blur(4px);
+    align-items: center; justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: #fff; color: #111;
+    max-width: 680px; width: 90%; max-height: 80vh;
+    border-radius: 20px; overflow: hidden;
+    display: flex; flex-direction: column;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.5);
+    animation: modalIn 0.3s ease;
+  }
+  @keyframes modalIn { from{opacity:0;transform:scale(0.95)} to{opacity:1;transform:scale(1)} }
+  .modal-header {
+    padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center;
+    background: var(--green-deep); color: var(--white);
+  }
+  .modal-header h3 { font-family: 'Orbitron', sans-serif; font-size: 1rem; }
+  .modal-close {
+    background: none; border: none; color: var(--white); font-size: 1.3rem;
+    cursor: pointer; opacity: 0.7; transition: opacity 0.2s;
+  }
+  .modal-close:hover { opacity: 1; }
+  .modal-body { padding: 2rem; overflow-y: auto; flex: 1; }
+  .modal-body h4 { color: var(--green-deep); margin: 1.2rem 0 0.5rem; font-size: 0.95rem; }
+  .modal-body p { font-size: 0.85rem; color: #555; line-height: 1.7; margin-bottom: 0.5rem; }
+  .modal-footer { padding: 1rem 2rem; border-top: 1px solid #eee; display: flex; justify-content: flex-end; gap: 1rem; }
+  .modal-footer .btn-decline { background: #eee; color: #555; padding: 0.6rem 1.4rem; border-radius: 8px; border: none; cursor: pointer; font-family: inherit; }
+  .modal-footer .btn-accept { background: var(--green-bright); color: var(--gray-dark); padding: 0.6rem 1.4rem; border-radius: 8px; border: none; cursor: pointer; font-weight: 700; font-family: inherit; }
+
+
+  @media(max-width:768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    #about { grid-template-columns: 1fr; }
+    .about-visual { display: none; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .auth-container { grid-template-columns: 1fr; }
+    .auth-visual { display: none; }
+    .auth-form-content { padding: 2rem; }
+    .saiba-hero { grid-template-columns: 1fr; }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  nav.scrolled {
+    background: rgba(8,14,10,0.95);
+    box-shadow: 0 4px 30px rgba(0,0,0,0.4);
+  }
+
+  .hero-title:hover .glitch {
+    animation: glitch 0.3s linear;
+  }
+  @keyframes glitch {
+    0%{text-shadow:2px 0 red,-2px 0 blue}
+    20%{text-shadow:-2px 0 red,2px 0 blue}
+    40%{text-shadow:2px 2px red,-2px -2px blue}
+    60%{text-shadow:-2px -2px red,2px 2px blue}
+    80%{text-shadow:2px -2px red,-2px 2px blue}
+    100%{text-shadow:none}
+  }
+
+  .blink { animation: blink 1s step-end infinite; }
+  @keyframes blink { 50%{opacity:0} }
+
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 2px;
+    background: linear-gradient(90deg, var(--green-bright), var(--green-glow));
+    width: 0%; z-index: 9999; transition: width 0.1s;
+  }
+</style>
+</head>
+<body>
+
+
+<div class="progress-bar" id="progressBar"></div>
+
+<div id="page-main" class="page active">
+
+  <nav id="mainNav">
+    <a class="nav-logo" href="#home">NEURALINK</a>
+    <div class="nav-links">
+      <a href="#about">Sobre</a>
+      <a href="#how">Como Funciona</a>
+      <a href="#saiba-mais">Saiba Mais</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#" onclick="showPage('login')">Login</a>
+      <a href="#" onclick="showPage('register')" class="nav-cta">Registrar</a>
+    </div>
+  </nav>
+
+  <section id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+
+    <div class="hero-content">
+      <div class="hero-tag">
+        <i class="fa fa-circle-dot"></i>
+        Tecnologia Neural de Próxima Geração
+      </div>
+
+      <h1 class="hero-title">
+        Conecte Sua<br>
+        <span>Mente ao Futuro</span>
+      </h1>
+
+      <p class="hero-sub">
+        Neuralink desenvolve interfaces cérebro-computador de alta performance, 
+        criando uma ponte entre a neurologia humana e a inteligência artificial.
+      </p>
+
+      <div class="hero-btns">
+        <a href="#saiba-mais" class="btn-primary">
+          <i class="fa fa-brain" style="margin-right:0.5rem"></i>
+          Saiba Mais
+        </a>
+        <a href="#" onclick="showPage('register')" class="btn-outline">Aderir ao Projeto</a>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <span>SCROLL</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <div id="stats">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <span class="stat-num" data-target="1024">0</span>
+        <div class="stat-label">Eletrodos por Dispositivo</div>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-num" data-target="50">0</span>
+        <div class="stat-label">Pacientes em Ensaios</div>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-num" data-target="99">0</span>
+        <div class="stat-label">% Taxa de Sucesso</div>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-num" data-target="8">0</span>
+        <div class="stat-label">Anos de Pesquisa</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="about">
+    <div class="about-visual reveal">
+      <div class="ring ring1"></div>
+      <div class="ring ring2"></div>
+      <div class="ring ring3"></div>
+      <div class="brain-circle">
+        <i class="fa fa-brain"></i>
+      </div>
+    </div>
+    <div class="about-text reveal">
+      <span class="section-label">Sobre o Projeto</span>
+      <h2 class="section-title">Tecnologia que <span>transforma vidas</span></h2>
+      <p class="section-sub">
+        A Neuralink está desenvolvendo um dispositivo implantável de interface cérebro-computador 
+        capaz de tratar condições neurológicas graves e, no futuro, ampliar as capacidades 
+        cognitivas humanas de maneiras inimagináveis.
+      </p>
+      <ul class="feature-list">
+        <li>
+          <i class="fa fa-microchip"></i>
+          <span><strong>Chip N1:</strong> Menor que uma moeda, com 1.024 eletrodos para leitura precisa de sinais neurais.</span>
+        </li>
+        <li>
+          <i class="fa fa-robot"></i>
+          <span><strong>Cirurgia Robótica:</strong> Implantação realizada por robô cirúrgico com precisão de micrômetros.</span>
+        </li>
+        <li>
+          <i class="fa fa-wifi"></i>
+          <span><strong>Conexão sem fio:</strong> Transmissão de dados neural em tempo real, sem fios externos.</span>
+        </li>
+        <li>
+          <i class="fa fa-battery-full"></i>
+          <span><strong>Recarga indutiva:</strong> Bateria recarregável sem invasão, durando o dia inteiro.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <section id="how">
+    <span class="section-label">Processo</span>
+    <h2 class="section-title">Como <span>Funciona</span></h2>
+    <p class="section-sub" style="margin: 0 auto">
+      Da avaliação inicial ao pleno funcionamento, acompanhe cada etapa da jornada Neuralink.
+    </p>
+    <div class="steps-grid">
+      <div class="step-card reveal">
+        <div class="step-num">01</div>
+        <div class="step-icon"><i class="fa fa-clipboard-check"></i></div>
+        <h3>Avaliação Clínica</h3>
+        <p>Triagem médica completa para verificar elegibilidade e definir metas terapêuticas personalizadas.</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">02</div>
+        <div class="step-icon"><i class="fa fa-robot"></i></div>
+        <h3>Implantação Robótica</h3>
+        <p>Procedimento minimamente invasivo realizado pelo robô R1, com precisão sub-milimétrica.</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">03</div>
+        <div class="step-icon"><i class="fa fa-sliders"></i></div>
+        <h3>Calibração Neural</h3>
+        <p>Algoritmos de IA aprendem padrões únicos do cérebro do paciente para máxima precisão.</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">04</div>
+        <div class="step-icon"><i class="fa fa-chart-line"></i></div>
+        <h3>Monitoramento Contínuo</h3>
+        <p>Equipe médica acompanha dados neurais em tempo real para garantir segurança e otimização.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="saiba-mais">
+    <div class="saiba-container">
+      <span class="section-label">Saiba Mais</span>
+      <h2 class="section-title reveal">Conheça a fundo a <span>tecnologia</span></h2>
+
+      <div class="saiba-hero reveal">
+        <div>
+          <h3 style="font-family:'Orbitron',sans-serif;font-size:1.4rem;margin-bottom:1rem;color:var(--green-bright)">A Fronteira da Neurociência</h3>
+          <p style="color:var(--gray-light);line-height:1.7;margin-bottom:1.2rem;font-size:0.92rem">
+            A Neuralink está na interseção da medicina, engenharia e inteligência artificial. 
+            Nosso chip N1 é implantado na região cortical motora, captando impulsos elétricos 
+            com resolução sem precedentes — traduzindo intenções em ações digitais.
+          </p>
+          <p style="color:var(--gray-light);line-height:1.7;font-size:0.92rem">
+            Para pacientes com lesão medular, ELA ou outras condições neurológicas, 
+            isso representa recuperar a capacidade de se comunicar, controlar dispositivos 
+            e participar plenamente da vida digital.
+          </p>
+        </div>
+        <div class="saiba-img">
+          <img src="./img/image.png" alt="Neurociência">
+        </div>
+      </div>
+
+      <div class="tech-grid">
+        <div class="tech-card reveal">
+          <div class="tech-card-icon"><i class="fa fa-microchip"></i></div>
+          <h3>Hardware Avançado</h3>
+          <p>O chip ASIC personalizado processa 1.024 canais neurais simultaneamente, com consumo de energia inferior a 6mW.</p>
+        </div>
+        <div class="tech-card reveal">
+          <div class="tech-card-icon"><i class="fa fa-brain"></i></div>
+          <h3>Decodificação por IA</h3>
+          <p>Redes neurais profundas decodificam intenções motoras em tempo real com latência inferior a 20 milissegundos.</p>
+        </div>
+        <div class="tech-card reveal">
+          <div class="tech-card-icon"><i class="fa fa-shield-halved"></i></div>
+          <h3>Biocompatibilidade</h3>
+          <p>Materiais certificados medicamente, projetados para décadas de implantação segura sem rejeição tecidual.</p>
+        </div>
+        <div class="tech-card reveal">
+          <div class="tech-card-icon"><i class="fa fa-lock"></i></div>
+          <h3>Privacidade Neural</h3>
+          <p>Criptografia de ponta a ponta garante que dados cerebrais permaneçam exclusivamente sob controle do paciente.</p>
+        </div>
+        <div class="tech-card reveal">
+          <div class="tech-card-icon"><i class="fa fa-satellite-dish"></i></div>
+          <h3>Conectividade Total</h3>
+          <p>Bluetooth de baixa energia permite interação com smartphones, computadores e dispositivos IoT sem limitações.</p>
+        </div>
+        <div class="tech-card reveal">
+          <div class="tech-card-icon"><i class="fa fa-flask"></i></div>
+          <h3>Ensaios Clínicos</h3>
+          <p>Aprovado pela FDA para ensaios em humanos, com resultados publicados em periódicos científicos revisados por pares.</p>
+        </div>
+      </div>
+
+      <div class="aderir-box reveal">
+        <span class="section-label" style="display:block;margin-bottom:0.5rem">Faça parte</span>
+        <h2>Aderir ao Projeto Neuralink</h2>
+        <p>Inscreva-se para receber atualizações e ser notificado sobre oportunidades de participação em pesquisas.</p>
+        <div class="aderir-form">
+          <input type="email" placeholder="Seu melhor e-mail" id="aderiEmail">
+          <button class="btn-primary" onclick="aderir()">
+            <i class="fa fa-paper-plane" style="margin-right:0.4rem"></i>Inscrever
+          </button>
+        </div>
+        <p id="aderiMsg" style="margin-top:1rem;color:var(--green-bright);font-size:0.85rem;display:none">
+          <i class="fa fa-check-circle"></i> Obrigado! Você está na lista.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="depoimentos">
+    <span class="section-label">Depoimentos</span>
+    <h2 class="section-title reveal">O que dizem os <span>participantes</span></h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="t-quote">"</div>
+        <p class="t-text">Após 8 anos sem mexer os braços, pude digitar uma mensagem para minha filha pela primeira vez. Não tenho palavras para descrever esse momento.</p>
+        <div class="t-author">
+          <div class="t-avatar"><i class="fa fa-user"></i></div>
+          <div>
+            <div class="t-name">Noland Arbaugh</div>
+            <div class="t-role">Primeiro paciente humano — 2026</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="t-quote">"</div>
+        <p class="t-text">A velocidade de decodificação dos sinais neurais superou todas as nossas expectativas. É um salto tecnológico comparável ao iPhone.</p>
+        <div class="t-author">
+          <div class="t-avatar"><i class="fa fa-user-tie"></i></div>
+          <div>
+            <div class="t-name">Dr. Matthew MacDougall</div>
+            <div class="t-role">Neurocirurgião Chefe, Neuralink</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="t-quote">"</div>
+        <p class="t-text">Ver alguém controlando um cursor com o pensamento em tempo real é uma das coisas mais profundas que já testemunhei na medicina moderna.</p>
+        <div class="t-author">
+          <div class="t-avatar"><i class="fa fa-user-doctor"></i></div>
+          <div>
+            <div class="t-name">Dra. Ana Rodrigues</div>
+            <div class="t-role">Neurocientista Parceira</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="nav-logo">NEURALINK</a>
+        <p>Desenvolvendo a interface entre a mente humana e a tecnologia para curar doenças neurológicas e expandir as capacidades humanas.</p>
+        <div class="footer-socials">
+          <a class="social-btn" href="#"><i class="fab fa-x-twitter"></i></a>
+          <a class="social-btn" href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a class="social-btn" href="#"><i class="fab fa-youtube"></i></a>
+          <a class="social-btn" href="#"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Produto</h4>
+        <a href="#about">Sobre</a>
+        <a href="#how">Como Funciona</a>
+        <a href="#saiba-mais">Tecnologia</a>
+        <a href="#depoimentos">Resultados</a>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <a href="#">Pesquisa</a>
+        <a href="#">Equipe</a>
+        <a href="#">Carreiras</a>
+        <a href="#">Imprensa</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#" onclick="openTerms()">Termos de Uso</a>
+        <a href="#">Privacidade</a>
+        <a href="#">Conformidade FDA</a>
+        <a href="#">Contato</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Neuralink Corporation. Todos os direitos reservados.</span>
+      <span>Feito com <i class="fa fa-heart" style="color:var(--green-bright)"></i> para o futuro da humanidade</span>
+    </div>
+  </footer>
+
+</div>
+<div id="page-login" class="page">
+  <div class="auth-container" style="min-height:100vh">
+    <div class="auth-visual">
+      <img src="https://images.unsplash.com/photo-1614854262318-831574f15f1f?w=800&q=80" alt="neural">
+      <div class="auth-visual-overlay">
+        <div class="auth-visual-text">
+          <h2>Bem-vindo de volta</h2>
+          <p>Continue sua jornada neural</p>
+        </div>
+      </div>
+    </div>
+    <div class="auth-form-side">
+      <div class="auth-nav">
+        <a onclick="showPage('main')" style="cursor:pointer"><i class="fa fa-arrow-left"></i> Início</a>
+        <a onclick="showPage('login')" class="active-tab">Login</a>
+        <a onclick="showPage('register')">Register</a>
+      </div>
+      <div class="auth-form-content">
+        <h1>Login</h1>
+        <p class="sub">Acesse sua conta Neuralink</p>
+
+        <div class="social-auth">
+          <a class="social-auth-btn" href="#">
+            <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google">
+            Google
+          </a>
+          <a class="social-auth-btn" href="#">
+            <img src="https://www.svgrepo.com/show/448234/linkedin.svg" alt="LinkedIn">
+            LinkedIn
+          </a>
+          <a class="social-auth-btn" href="#">
+            <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" alt="Facebook">
+            Facebook
+          </a>
+        </div>
+
+        <div class="divider">ou com e-mail</div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="seu@email.com">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" placeholder="••••••••••••">
+        </div>
+
+        <a class="forgot-link" href="#">Esqueci minha senha</a>
+
+        <button class="btn-primary" style="width:100%;border-radius:12px;padding:1rem;font-size:1rem" onclick="alert('Login em desenvolvimento!')">
+          Entrar <i class="fa fa-arrow-right" style="margin-left:0.5rem"></i>
+        </button>
+
+        <p style="margin-top:1.5rem;text-align:center;font-size:0.85rem;color:#777">
+          Não tem conta? 
+          <a onclick="showPage('register')" style="color:var(--green-mid);cursor:pointer;font-weight:600">Registre-se</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="page-register" class="page">
+  <div class="auth-container" style="min-height:100vh">
+    <div class="auth-visual">
+      <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80" alt="tech">
+      <div class="auth-visual-overlay">
+        <div class="auth-visual-text">
+          <h2>Junte-se à revolução</h2>
+          <p>Faça parte do futuro da mente humana</p>
+        </div>
+      </div>
+    </div>
+    <div class="auth-form-side">
+      <div class="auth-nav">
+        <a onclick="showPage('main')" style="cursor:pointer"><i class="fa fa-arrow-left"></i> Início</a>
+        <a onclick="showPage('login')">Login</a>
+        <a onclick="showPage('register')" class="active-tab">Register</a>
+      </div>
+      <div class="auth-form-content">
+        <h1>Register</h1>
+        <p class="sub">Crie sua conta Neuralink</p>
+
+        <div class="social-auth">
+          <a class="social-auth-btn" href="#">
+            <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google">
+            Google
+          </a>
+          <a class="social-auth-btn" href="#">
+            <img src="https://www.svgrepo.com/show/448234/linkedin.svg" alt="LinkedIn">
+            LinkedIn
+          </a>
+          <a class="social-auth-btn" href="#">
+            <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" alt="Facebook">
+            Facebook
+          </a>
+        </div>
+
+        <div class="divider">ou com e-mail</div>
+
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" placeholder="Seu nome completo">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="seu@email.com">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" placeholder="••••••••••••••">
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="termsCheck">
+          <label for="termsCheck">
+            Eu concordo com todos os termos em 
+            <a onclick="openTerms()">Termos de serviço</a>
+          </label>
+        </div>
+
+        <button class="btn-primary" style="width:100%;border-radius:12px;padding:1rem;font-size:1rem" onclick="handleRegister()">
+          Criar Conta <i class="fa fa-arrow-right" style="margin-left:0.5rem"></i>
+        </button>
+
+        <p style="margin-top:1.5rem;text-align:center;font-size:0.85rem;color:#777">
+          Já tem conta? 
+          <a onclick="showPage('login')" style="color:var(--green-mid);cursor:pointer;font-weight:600">Faça login</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal-overlay" id="termsModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3><i class="fa fa-file-contract" style="margin-right:0.5rem"></i>Termos de Uso — Neuralink</h3>
+      <button class="modal-close" onclick="closeTerms()"><i class="fa fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <p>Ao utilizar os serviços e produtos da Neuralink Corporation, você concorda com os seguintes termos e condições. Leia atentamente antes de prosseguir.</p>
+
+      <h4>1. Elegibilidade e Participação</h4>
+      <p>A participação nos ensaios clínicos da Neuralink é restrita a indivíduos maiores de 18 anos com diagnóstico médico confirmado de condições neurológicas específicas, conforme critérios estabelecidos pelo protocolo clínico aprovado pela FDA.</p>
+
+      <h4>2. Consentimento Informado</h4>
+      <p>Todo procedimento de implantação requer consentimento informado escrito e documentado. O participante tem o direito de retirar o consentimento a qualquer momento, e o dispositivo pode ser removido cirurgicamente mediante solicitação.</p>
+
+      <h4>3. Coleta e Uso de Dados Neurais</h4>
+      <p>Os dados neurais coletados são utilizados exclusivamente para fins terapêuticos e de pesquisa científica. A Neuralink não vende dados neurais a terceiros. Todos os dados são criptografados com padrão AES-256 e armazenados em servidores certificados HIPAA.</p>
+
+      <h4>4. Riscos e Limitações</h4>
+      <p>Como qualquer procedimento cirúrgico, o implante carrega riscos incluindo infecção, sangramento e reação ao corpo estranho. A equipe médica fornecerá informação detalhada sobre todos os riscos específicos antes do procedimento.</p>
+
+      <h4>5. Propriedade Intelectual</h4>
+      <p>Todo conteúdo desta plataforma, incluindo dados científicos, algoritmos e interfaces, é propriedade intelectual da Neuralink Corporation e está protegido por leis de direitos autorais internacionais.</p>
+
+      <h4>6. Privacidade e LGPD</h4>
+      <p>Em conformidade com a Lei Geral de Proteção de Dados (LGPD — Lei 13.709/2018), garantimos o direito de acesso, correção, portabilidade e exclusão de todos os dados pessoais mediante solicitação formal.</p>
+
+      <h4>7. Alterações dos Termos</h4>
+      <p>A Neuralink reserva-se o direito de modificar estes termos a qualquer momento, com notificação prévia de 30 dias por e-mail aos participantes registrados.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-decline" onclick="closeTerms()">Recusar</button>
+      <button class="btn-accept" onclick="acceptTerms()">
+        <i class="fa fa-check" style="margin-right:0.4rem"></i>Aceitar Termos
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+
+  function showPage(page) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    if(page === 'main') {
+      document.getElementById('page-main').classList.add('active');
+      document.getElementById('page-login').style.display = 'none';
+      document.getElementById('page-register').style.display = 'none';
+      document.getElementById('page-main').style.display = 'block';
+    } else if(page === 'login') {
+      document.getElementById('page-main').style.display = 'none';
+      document.getElementById('page-register').style.display = 'none';
+      document.getElementById('page-login').style.display = 'block';
+    } else if(page === 'register') {
+      document.getElementById('page-main').style.display = 'none';
+      document.getElementById('page-login').style.display = 'none';
+      document.getElementById('page-register').style.display = 'block';
+    }
+    window.scrollTo(0,0);
+  }
+
+  function openTerms() {
+    document.getElementById('termsModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeTerms() {
+    document.getElementById('termsModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function acceptTerms() {
+    document.getElementById('termsCheck') && (document.getElementById('termsCheck').checked = true);
+    closeTerms();
+  }
+
+  function handleRegister() {
+    const checked = document.getElementById('termsCheck');
+    if(!checked || !checked.checked) {
+      openTerms();
+    } else {
+      alert('Conta criada com sucesso! Bem-vindo à Neuralink.');
+    }
+  }
+
+  function aderir() {
+    const email = document.getElementById('aderiEmail').value;
+    if(email && email.includes('@')) {
+      document.getElementById('aderiMsg').style.display = 'block';
+      document.getElementById('aderiEmail').value = '';
+    }
+  }
+
+  window.addEventListener('scroll', () => {
+    const doc = document.documentElement;
+    const scroll = doc.scrollTop;
+    const height = doc.scrollHeight - doc.clientHeight;
+    document.getElementById('progressBar').style.width = (scroll/height*100) + '%';
+
+    const nav = document.getElementById('mainNav');
+    if(nav) nav.classList.toggle('scrolled', scroll > 50);
+  });
+
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  function animateCounters() {
+    document.querySelectorAll('[data-target]').forEach(el => {
+      const target = +el.dataset.target;
+      const suffix = el.dataset.suffix || '';
+      let count = 0;
+      const step = target / 60;
+      const timer = setInterval(() => {
+        count = Math.min(count + step, target);
+        el.textContent = Math.floor(count) + suffix;
+        if(count >= target) clearInterval(timer);
+      }, 20);
+    });
+  }
+  const statsObserver = new IntersectionObserver(entries => {
+    if(entries[0].isIntersecting) { animateCounters(); statsObserver.disconnect(); }
+  }, { threshold: 0.3 });
+  const statsEl = document.getElementById('stats');
+  if(statsEl) statsObserver.observe(statsEl);
+
+  document.getElementById('page-login').style.display = 'none';
+  document.getElementById('page-register').style.display = 'none';
+  document.getElementById('page-main').style.display = 'block';
+</script>
+</body>
+</html>
